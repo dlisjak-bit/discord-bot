@@ -11,7 +11,7 @@ import asyncio
 from discord.ext import commands
 
 #nepomembno-----------------------
-load_dotenv()
+load_dotenv(".env")
 TOKEN = os.getenv('DISCORD_TOKEN')
 print(os.getenv('DISCORD_TOKEN'))
 #nepomembno----------------------
@@ -22,7 +22,7 @@ bot = commands.Bot(command_prefix='-')
 bot.remove_command("help")                              # Zamenjan z -pomoč
 channels = ["796708748243501106", "745616936301494396"] # V prihodnosti ID-ji kanalov, da lahko deluje samo v nekaterih
 channelset = frozenset(channels)                       
-
+predlogi = []
 
 
 # Prižig
@@ -69,6 +69,7 @@ async def pomoč(ctx):
     embed.add_field(name="-lestvica", value="Najboljši rezultati kvizovcev", inline="False")
     embed.add_field(name="-file", value="Pošljem trenutni file vseh besed", inline="False")
     embed.add_field(name="-quote", value="Vržem ven naključno bučko", inline="False")
+    embed.add_field(name="-predlog", value="Predlagaj spremembe (primer: -predlog popravi crkovanje univerza)", inline="False")
     embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/745616936301494395/772791128264671242/Screenshot_2020-04-23_at_10.05.10.png")
     await ctx.send(embed=embed)
 
@@ -84,7 +85,7 @@ async def beseda(ctx):
     else: 
         ima_sinonime = False
     # Besede so ločene z ' : ' (poglej besede.txt)
-    kviz = "Tvoja beseda je: **" + slovensko + "**. Imaš 15 sekund časa, preden povem odgovor."
+    kviz = "Tvoja beseda je: **" + slovensko + "**. Imaš 30 sekund časa, preden povem odgovor."
     await ctx.send(kviz)
     
     # Testiranje pravilnosti:
@@ -93,7 +94,7 @@ async def beseda(ctx):
         def check(message):
             return True 
         try:
-            ugib = await bot.wait_for('message', check=check, timeout=15)
+            ugib = await bot.wait_for('message', check=check, timeout=30)
         except asyncio.TimeoutError:
             return await ctx.channel.send("Timeout. Odgovor je " + nemsko + ".")
         if ugib.content in sinonimi:
@@ -104,7 +105,7 @@ async def beseda(ctx):
         def check(message):
             return True
         try:
-            ugib = await bot.wait_for('message', check=check, timeout=15)
+            ugib = await bot.wait_for('message', check=check, timeout=30)
         except asyncio.TimeoutError:
             return await ctx.channel.send("Timeout. Odgovor je " + nemsko + ".")
         if (ugib.content == nemsko):
@@ -131,7 +132,7 @@ async def file(ctx):
 async def kviz(ctx):
     pravilno = True
     score = 0
-    besede_kviz = besede_dict
+    besede_kviz = besede_dict.copy()
     kvizovec_id = ctx.message.author.id
     kvizovec_mention = ctx.message.author.mention
     while pravilno:
@@ -139,7 +140,7 @@ async def kviz(ctx):
             await ctx.send("Čestitam, znaš vse besede!")
             break
         nemsko = random.choice(list(besede_kviz.keys()))
-        slovensko = besede_dict[nemsko]
+        slovensko = besede_kviz[nemsko]
         besede_kviz.pop(nemsko)
         sinonimi = nemsko.split(" / ")
         # Testiraj če ima sinonime
@@ -149,7 +150,7 @@ async def kviz(ctx):
             ima_sinonime = False
         st_poskusa = score+1
         timeout = False
-        povej = "Kviz za " + kvizovec_mention + ". Tvoja " + str(st_poskusa) + ". beseda je **" + slovensko + "**. Imaš 15 sekund."
+        povej = "Kviz za " + kvizovec_mention + ". Tvoja " + str(st_poskusa) + ". beseda je **" + slovensko + "**. Imaš 30 sekund."
         await ctx.send(povej)
         if ima_sinonime:
             opomba = "Opomba: je več možnih odgovorov."
@@ -160,7 +161,7 @@ async def kviz(ctx):
                 else:
                     return False
             try:
-                ugib = await bot.wait_for('message', check=check, timeout=15)
+                ugib = await bot.wait_for('message', check=check, timeout=30)
             except asyncio.TimeoutError:
                 pravilno = False
                 timeout = True
@@ -179,7 +180,7 @@ async def kviz(ctx):
                 else:
                     return False
             try:
-                ugib = await bot.wait_for('message', check=check, timeout=15)
+                ugib = await bot.wait_for('message', check=check, timeout=30)
             except asyncio.TimeoutError:
                 pravilno = False
                 timeout = True
@@ -215,6 +216,14 @@ async def lestvica(ctx):
         i+=1
     await ctx.send(embed=embed)
 
+
+@bot.command(name='predlog')
+async def predlog(ctx, arg):
+    predlogi.append(arg)
+    with open("predlogi.txt", 'w', encoding='utf-8') as p:
+        for predlog in predlogi:
+            p.write(predlog + "\n")
+    await ctx.send("Hvala za tvoj predlog!")
 bot.run(TOKEN)
 
 #
