@@ -1,0 +1,53 @@
+der Test : test
+das Zeugnis : spričevalo
+das Abschlusszeugnis : zaključno spričevalo
+das Pflichtfach : obvezen predmet
+das Wahlfach : izbirni predmet
+wählen : izbirati
+die Krippe : jasli
+der Kindergarten : vrtec
+die Schule : šola
+die Hauptschule : osnovna šola
+die Fachschule : strokovna šola
+die Berufschule : Poklicna šola
+die Mittelschule : srednja šola
+die Hochschule : visoka šola
+das Gymnasium : gimnazija
+das Studium : študij
+die Universität / die Uni : univerza
+die Lehre : pripravništvo
+die Auszubildende / die Lehrling / die Azubi : vajenec
+die Praktikum : praktično izobraževanje
+bestehen : opraviti (test)
+durchfallen : pasti na testu
+die Prüfung : izpit
+die mündliche Prüfung : ustni izpit
+die schriftliche Prüfung : pisni izpit
+die praktische Prüfung : praktični izpit
+die Nachprüfung : popravni izpit
+das Unternehmen / der Betrieb / die Firma : podjetje
+das Stellenangebot : ponudba delovnih mest
+die Betriebskantine : menza
+der Arbeitsplatz : delovno mesto
+die Berufserfahrung : poklicna izkušnja 
+der Personalchef : vodja kadrovske službe
+der Konferenzraum : konferenčna soba
+der Lebenslauf : življenjepis
+das Abitur / die Matura : zaključni izpit
+die Arbeit : delo
+arbeitslos : brezposelen
+die Karriere : kariera
+die Agentur : agencija
+der Vertrag : pogodba
+abschließen : podpisati pogodbo
+der Verdienst : zaslužek
+verdienen : zaslužiti
+jobben : začasno delati
+kaufmännisch : trgovski
+verantwortlich : odgovoren
+der Bereich : območje/področje
+die Ausbildung : izobrazba
+wechseln : menjavati
+abhängig : odvisen
+gleichzeitig : istočasen
+dankbar : hvaležen
