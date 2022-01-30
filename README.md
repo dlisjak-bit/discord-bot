@@ -1,3 +1,4 @@
-A Friendly Discord Bot
+# A Friendly Discord Bot
 
-Pomoc pri nemscini. Made in karantena 2020.
+#### Pomoc pri nemscini.
+Made in karantena 2020.
