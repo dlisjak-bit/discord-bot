@@ -1,4 +1,4 @@
 # A Friendly Discord Bot (inactive)
 
-#### Pomoc pri nemscini.
-Made in karantena 2020.
+#### Helper for all the people struggling with German classes.
+Made in quarantine 2020.
